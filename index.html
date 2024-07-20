@@ -19,18 +19,23 @@
             padding: 20px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1); /* Slightly transparent to make text readable */
         }
-        .header, .contact {
+        .header {
             text-align: center;
             padding: 20px;
-            background: rgba(2, 136, 209, 0.8); /* Semi-transparent blue background */
+            background: url('https://i.imgur.com/42iFEsD.jpeg') no-repeat center center;
+            background-size: cover;
             color: #fff;
             border-radius: 10px;
             margin-bottom: 20px;
         }
-        .header h1, .contact p {
+        .header h1 {
             margin: 0;
             font-size: 2.5em;
+            background: rgba(2, 136, 209, 0.8); /* Semi-transparent blue background */
+            padding: 20px;
+            border-radius: 10px;
         }
         .content {
             padding: 20px;
@@ -101,6 +106,17 @@
         .form-section button:hover {
             background: #01579b;
         }
+        .contact {
+            padding: 10px; /* Reduced padding */
+            font-size: 0.9em; /* Reduced font size */
+            background: rgba(2, 136, 209, 0.8); /* Semi-transparent blue background */
+            color: #fff;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .contact p {
+            font-size: 1em;
+        }
     </style>
 </head>
 <body>
@@ -123,14 +139,11 @@
             </ul>
             <h2>Explore the Venue</h2>
             <div class="images">
+                <img src="https://i.imgur.com/42iFEsD.jpeg" alt="Image 1">
+                
+                <img src="https://i.imgur.com/up5xoD2.jpeg" alt="Image 3">
+                <img src="https://i.imgur.com/MLUpJl5.jpeg" alt="Image 4">
                 <img src="https://i.imgur.com/I4eohoz.jpeg" alt="St Lucia Beach">
-                <img src="https://i.imgur.com/V9Mn8Tq.jpeg" alt="Hiking Trail">
-                <img src="https://i.imgur.com/OQNcaOP.jpeg" alt="Local Wildlife">
-                <img src="https://i.imgur.com/sYfTOEk.jpeg" alt="Scenic View">
-                <img src="https://i.imgur.com/Yw6qudq.jpeg" alt="Resort">
-                <img src="https://i.imgur.com/ONQCAop.jpeg" alt="Dining Area">
-                <img src="https://i.imgur.com/a1EOhoZ.jpeg" alt="Adventure Activities">
-                <img src="https://i.imgur.com/N9M8TqV.jpeg" alt="Nightlife">
             </div>
             <h2>Booking Form</h2>
             <div class="form-section">
