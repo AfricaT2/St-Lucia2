@@ -9,26 +9,26 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
+            color: #fff;
             background: url('https://i.imgur.com/Gy77nOs.jpeg') no-repeat center center fixed;
             background-size: cover;
-            color: #fff;
         }
         .container {
             max-width: 800px;
             margin: 50px auto;
             padding: 20px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            background: rgba(0, 0, 0, 0.5);
         }
-        .header {
+        .header, .contact {
             text-align: center;
             padding: 20px;
-            background: rgba(2, 136, 209, 0.9);
+            background: rgba(2, 136, 209, 0.8); /* Semi-transparent blue background */
             color: #fff;
-            border-radius: 10px 10px 0 0;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
-        .header h1 {
+        .header h1, .contact p {
             margin: 0;
             font-size: 2.5em;
         }
@@ -43,11 +43,12 @@
             padding: 0;
         }
         .rules li {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(225, 245, 254, 0.8); /* Semi-transparent light blue background */
             margin: 10px 0;
             padding: 15px;
             border-radius: 5px;
             border-left: 5px solid #0288d1;
+            color: #000;
         }
         .rules strong {
             color: #0288d1;
@@ -63,30 +64,41 @@
             width: 100%;
             max-width: 200px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
-        .contact {
-            text-align: center;
-            padding: 20px;
-            background: rgba(2, 119, 189, 0.9);
-            color: #fff;
-            border-radius: 0 0 10px 10px;
-        }
-        .contact p {
-            margin: 0;
-            font-size: 1.2em;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
+        .form-section {
             margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.1); /* Slightly transparent to make text readable */
+            color: #fff;
+        }
+        .form-section form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .form-section label {
+            font-weight: bold;
+        }
+        .form-section input, .form-section select, .form-section textarea {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+            color: #000;
+        }
+        .form-section button {
+            padding: 10px;
             background: #0288d1;
             color: #fff;
-            text-decoration: none;
+            border: none;
             border-radius: 5px;
-            text-align: center;
+            cursor: pointer;
         }
-        .button:hover {
+        .form-section button:hover {
             background: #01579b;
         }
     </style>
@@ -120,10 +132,57 @@
                 <img src="https://i.imgur.com/a1EOhoZ.jpeg" alt="Adventure Activities">
                 <img src="https://i.imgur.com/N9M8TqV.jpeg" alt="Nightlife">
             </div>
+            <h2>Booking Form</h2>
+            <div class="form-section">
+                <form id="bookingForm">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <label for="trip">Select Trip:</label>
+                    <select id="trip" name="trip" required>
+                        <option value="st-lucia">St Lucia Road Trip</option>
+                        <!-- Add more trip options here -->
+                    </select>
+                    <label for="accommodation">Select Accommodation:</label>
+                    <select id="accommodation" name="accommodation" required>
+                        <option value="standard">Standard Room</option>
+                        <option value="deluxe">Deluxe Room</option>
+                        <!-- Add more accommodation options here -->
+                    </select>
+                    <label for="notes">Additional Notes:</label>
+                    <textarea id="notes" name="notes" rows="4"></textarea>
+                    <button type="submit">Book Now</button>
+                </form>
+            </div>
         </div>
         <div class="contact">
             <p>Contact Details: <strong>Africa 0814923012</strong></p>
         </div>
     </div>
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch('/book-trip', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Booking successful! Details sent to your email.');
+                } else {
+                    alert('Booking failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+    </script>
 </body>
 </html>
